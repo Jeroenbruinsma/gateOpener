@@ -8,7 +8,7 @@ const jsonParser = bodyParser.json()
 //raspberry io config
 const Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 const gateRelay = new Gpio(4, 'out'); //use GPIO pin 4, and specify that it is output
-
+gateRelay.writeSync(1)
 
 app.use(jsonParser)
 
@@ -29,14 +29,14 @@ app.post('/gate', (request, response) => {
 })
 
 const openGate = () => {
-    gateRelay.writeSync(1)
+    gateRelay.writeSync(0)
     setTimeout(closeGate, 3000); //close  gateRelais after 3 seconds 
     //setTimeout(function(){ console.log("Hello"); }, 3000);
     // gateRelay.unexport(); //don't know if we need this. // Unexport GPIO to free resources
 }
 
 const closeGate = () => {
-    gateRelay.writeSync(0)
+    gateRelay.writeSync(1)
     // gateRelay.unexport(); //don't know if we need this. // Unexport GPIO to free resources
 }
 
