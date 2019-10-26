@@ -30,8 +30,8 @@ app.post('/gate', (request, response) => {
 
 const openGate = () => {
     gateRelay.writeSync(1)
-    //setTimeout(closeGate, 3000); //close  gateRelais after 3 seconds 
-    setTimeout(function(){ console.log("Hello"); }, 3000);
+    setTimeout(closeGate, 3000); //close  gateRelais after 3 seconds 
+    //setTimeout(function(){ console.log("Hello"); }, 3000);
     // gateRelay.unexport(); //don't know if we need this. // Unexport GPIO to free resources
 }
 
